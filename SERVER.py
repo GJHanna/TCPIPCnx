@@ -10,7 +10,7 @@ s.listen(5)
 
 while True:
     clt, adr = s.accept()
-    print(f'Connection to {adr} established')
+    print(f'Connection to {adr} established and shant is awesome')
     r = clt.recv(512)
     if r == bytes.fromhex('F000001400'):
         clt.send(bytes.fromhex('deadbeef'))
