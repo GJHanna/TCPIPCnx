@@ -74,9 +74,6 @@ class CLIENT(object):
         
         if (bytes_recvd == b''):
             raise ValueError('No data received')
-        b = [bytes(by) for by in bytes_recvd]
-        print('Data received: ' + str(bytes_recvd[0]) + ' ' + \
-            str(bytes_recvd[1]))
         msb = bytes_recvd[0]
         lsb = bytes_recvd[1]
         val = msb<<8|lsb
