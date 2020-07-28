@@ -63,12 +63,6 @@ class CLIENT(object):
     def send(self):
         try:
             # Send data to server from Hex to bytes
-            print(bytes.fromhex('F000001400'))
-            # self.__sock.send(bytes.fromhex('F000001400'))
-            # self.__sock.send(bytes('F000001400'.encode('utf-8')))
-            # self.__sock.send('F000001400'.encode('utf-8'))
-            # self.__sock.send(bytearray.fromhex('F000001400'))
-            # self.__sock.send(binascii.unhexlify('F000001400'))
             data = 'F000001400'
             self.__sock.send(bytes.fromhex(data))
         except ConnectionRefusedError:
@@ -80,8 +74,10 @@ class CLIENT(object):
         
         if (bytes_recvd == b''):
             raise ValueError('No data received')
-        print('Data received: ' + str(bytes_recvd[0]) + ' ' + \
-            str(bytes_recvd[1]))
+        msb = bytes_recvd[0]
+        lsb = bytes_recvd[1]
+        val = msb<<8|lsb
+        print(val)
         return bytes_recvd 
 
 if __name__=='__main__':
